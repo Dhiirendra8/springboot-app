@@ -92,13 +92,13 @@ public class SecretManagerConnect {
 
 
 		} catch (SecretsManagerException ex) {
-//			log.error("Within SecretManagerConnect class-SecretsManagerException:{}", ex.getMessage());
+			System.out.println("Within SecretManagerConnect class-SecretsManagerException: " + ex.getMessage());
 			return null;
 		} catch (AwsServiceException ex) {
-//			log.error("Within SecretManagerConnect class-AwsServiceException:{}", ex.getMessage());
+			System.out.println("Within SecretManagerConnect class-AwsServiceException: " + ex.getMessage());
 			return null;
 		} catch (Exception ex) {
-//			log.error("Within SecretManagerConnect class-Exception:{}", ex.getMessage());
+			System.out.println("Within SecretManagerConnect class-Exception: "+ ex.getMessage());
 			return null;
 		}
 
@@ -111,14 +111,14 @@ public class SecretManagerConnect {
 
 		try {
 			
-//			log.debug("First Step of SecretManager");
+			System.out.println("First Step of SecretManager");
 			
 			SecretsManagerClient secretManagerClient = SecretsManagerClient.builder()
 					.credentialsProvider(awsCredentials).region(defaultRegion).build();
 
 			GetSecretValueRequest fetchSecrets = GetSecretValueRequest.builder().secretId(secretName).build();
 
-//			log.debug("Second Step of SecretManager");
+			System.out.println("Second Step of SecretManager");
 
 			GetSecretValueResponse secretsValue = secretManagerClient.getSecretValue(fetchSecrets);
 
@@ -130,13 +130,13 @@ public class SecretManagerConnect {
 			return jsonObject.toString();
 
 		} catch (SecretsManagerException ex) {
-//			log.error("Within SecretManagerConnect class-SecretsManagerException:{}", ex.getMessage());
+			System.out.println("Within SecretManagerConnect class-SecretsManagerException:{}" + ex.getMessage());
 			return null;
 		} catch (AwsServiceException ex) {
-//			log.error("Within SecretManagerConnect class-AwsServiceException:{}", ex.getMessage());
+			System.out.println("Within SecretManagerConnect class-AwsServiceException:{}"+ ex.getMessage());
 			return null;
 		} catch (Exception ex) {
-//			log.error("Within SecretManagerConnect class-Exception:{}", ex.getMessage());
+			System.out.println("Within SecretManagerConnect class-Exception:{}" + ex.getMessage());
 			return null;
 		}
 
