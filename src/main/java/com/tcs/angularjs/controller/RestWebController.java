@@ -27,7 +27,7 @@ public class RestWebController {
     
     @RequestMapping(value = "/getSM", method = RequestMethod.GET)
     public String getSMResource(){
-            return "GET SM";
+            return service.getSecret();
     }
     
     @RequestMapping(value="/postcustomer", method=RequestMethod.POST)
