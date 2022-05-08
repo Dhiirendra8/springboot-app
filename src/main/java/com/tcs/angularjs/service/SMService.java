@@ -2,6 +2,7 @@ package com.tcs.angularjs.service;
 
 import java.util.Base64;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.amazonaws.services.secretsmanager.AWSSecretsManager;
@@ -22,6 +23,13 @@ import software.amazon.awssdk.services.secretsmanager.model.SecretsManagerExcept
 
 @Service
 public class SMService {
+	
+	@Autowired
+	private SecretManagerConnect sm;
+	
+	public String getSecret() {
+		return sm.connectSM("");
+	}
 
 	public String getSecrets() {
 
@@ -56,7 +64,7 @@ public class SMService {
 	// If you need more information about configurations or implementing the sample code, visit the AWS docs:
 	// https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/java-dg-samples.html#prerequisites
 
-	public  String getSecret() {
+	public  String getSecret1() {
 
 	    String secretName = "arn:aws:secretsmanager:us-east-1:529599697351:secret:my-aws-secret-6HShXu";
 	    String region = "us-east-1";

@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Built-By: Dhirendra Singh
 Build-Jdk: 11.0.14
-Implementation-Title: MyEKSeApp-1
+Implementation-Title: MyEKSApp-1
 Implementation-Version: 0.0.1
 Implementation-Vendor-Id: com.tcs.angularjs
 Implementation-Vendor: Pivotal Software, Inc.

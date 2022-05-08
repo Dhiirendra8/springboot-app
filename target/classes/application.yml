@@ -1,0 +1,23 @@
+
+# Monitoring
+spring.jmx.enabled: true
+management:
+  endpoints.jmx.exposure.include: "*"
+  endpoints.web.exposure.include: "*"
+  metrics.kafka.consumer.enabled: true
+  metrics.kafka.producer.enabled: true
+  server.port: ${kafka.monitoring_port}
+  
+# aws properties for SM
+cloud:
+  aws:
+    credentials.access-key : AKIAXWTU2CHD7UILCBXJ
+    credentials.secret-key : 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
+    apiCallTimeoutinSeconds : 10
+    roleArn : 
+    secretName: my-aws-secret
+    
+   
+  
+
+   
