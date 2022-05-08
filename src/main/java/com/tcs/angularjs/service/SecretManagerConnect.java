@@ -1,23 +1,23 @@
 package com.tcs.angularjs.service;
 
+//import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
+
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import software.amazon.awssdk.auth.credentials.AwsCredentialsProvider;
 import software.amazon.awssdk.auth.credentials.WebIdentityTokenFileCredentialsProvider;
 import software.amazon.awssdk.awscore.exception.AwsServiceException;
 import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.acm.AcmClient;
 import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient;
 import software.amazon.awssdk.services.secretsmanager.model.GetSecretValueRequest;
 import software.amazon.awssdk.services.secretsmanager.model.GetSecretValueResponse;
 import software.amazon.awssdk.services.secretsmanager.model.SecretsManagerException;
-import software.amazon.awssdk.services.acm.AcmClient;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
+//@Slf4j
 @Configuration
 public class SecretManagerConnect {
 
@@ -76,12 +76,12 @@ public class SecretManagerConnect {
 
 //	@Cacheable(cacheNames = "smCache", key = "#keyId")
 	public String connectSM(String keyId) {
-		log.info("Within Secret Manager Connection");
+//		log.info("Within Secret Manager Connection");
 		
 		try {
 				
 				setEnvironmentVariables();				
-				log.debug("Inside switchAwsACMWebToken");
+//				log.debug("Inside switchAwsACMWebToken");
 
 				// secretDetails = SecretManagerConnect.secretManagerValues(WebIdentityTokenFileCredentialsProvider.create(),"DemoTest");
 				
@@ -92,13 +92,13 @@ public class SecretManagerConnect {
 
 
 		} catch (SecretsManagerException ex) {
-			log.error("Within SecretManagerConnect class-SecretsManagerException:{}", ex.getMessage());
+//			log.error("Within SecretManagerConnect class-SecretsManagerException:{}", ex.getMessage());
 			return null;
 		} catch (AwsServiceException ex) {
-			log.error("Within SecretManagerConnect class-AwsServiceException:{}", ex.getMessage());
+//			log.error("Within SecretManagerConnect class-AwsServiceException:{}", ex.getMessage());
 			return null;
 		} catch (Exception ex) {
-			log.error("Within SecretManagerConnect class-Exception:{}", ex.getMessage());
+//			log.error("Within SecretManagerConnect class-Exception:{}", ex.getMessage());
 			return null;
 		}
 
@@ -110,31 +110,31 @@ public class SecretManagerConnect {
 
 		try {
 			
-			log.debug("First Step of SecretManager");
+//			log.debug("First Step of SecretManager");
 			
 			SecretsManagerClient secretManagerClient = SecretsManagerClient.builder()
 					.credentialsProvider(awsCredentials).region(defaultRegion).build();
 
 			GetSecretValueRequest fetchSecrets = GetSecretValueRequest.builder().secretId(secretName).build();
 
-			log.debug("Second Step of SecretManager");
+//			log.debug("Second Step of SecretManager");
 
 			GetSecretValueResponse secretsValue = secretManagerClient.getSecretValue(fetchSecrets);
 
-			log.debug(secretsValue.secretString());
+//			log.debug(secretsValue.secretString());
 
 			jsonObject = new JSONObject(secretsValue.secretString());
 			secretManagerClient.close();
 			return jsonObject.getString(keyId);
 
 		} catch (SecretsManagerException ex) {
-			log.error("Within SecretManagerConnect class-SecretsManagerException:{}", ex.getMessage());
+//			log.error("Within SecretManagerConnect class-SecretsManagerException:{}", ex.getMessage());
 			return null;
 		} catch (AwsServiceException ex) {
-			log.error("Within SecretManagerConnect class-AwsServiceException:{}", ex.getMessage());
+//			log.error("Within SecretManagerConnect class-AwsServiceException:{}", ex.getMessage());
 			return null;
 		} catch (Exception ex) {
-			log.error("Within SecretManagerConnect class-Exception:{}", ex.getMessage());
+//			log.error("Within SecretManagerConnect class-Exception:{}", ex.getMessage());
 			return null;
 		}
 
@@ -143,7 +143,7 @@ public class SecretManagerConnect {
 	@Bean
 	public AcmClient getInstanceForACM() {
 		
-		log.info("New connection initalization for Https");
+//		log.info("New connection initalization for Https");
 
 		try {
 				
@@ -158,10 +158,10 @@ public class SecretManagerConnect {
 				return acmClient;
 			
 		} catch (AwsServiceException ex) {
-			log.error("Within SecretManagerConnect class,getInstanceForACM-AwsServiceException:{}", ex.getMessage());
+//			log.error("Within SecretManagerConnect class,getInstanceForACM-AwsServiceException:{}", ex.getMessage());
 			return null;
 		} catch (Exception ex) {
-			log.error("Within SecretManagerConnect class,getInstanceForACM-Exception:{}", ex.getMessage());
+//			log.error("Within SecretManagerConnect class,getInstanceForACM-Exception:{}", ex.getMessage());
 			return null;
 		}
 

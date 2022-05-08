@@ -63,11 +63,11 @@
 			<version>2.3.1</version>
 		</dependency>
 		
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
-		</dependency>
+		</dependency> -->
 		
 		<dependency>
             <groupId>org.json</groupId>
