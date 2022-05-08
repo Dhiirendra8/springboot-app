@@ -11,8 +11,8 @@ management:
 # aws properties for SM
 cloud:
   aws:
-    credentials.access-key : AKIAXWTU2CHD7UILCBXJ
-    credentials.secret-key : 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
+    credentials.access-key : ""
+    credentials.secret-key : ""
     apiCallTimeoutinSeconds : 10
     roleArn : 
     secretName: my-aws-secret
