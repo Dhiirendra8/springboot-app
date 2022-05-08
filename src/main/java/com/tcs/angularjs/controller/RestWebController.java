@@ -27,7 +27,12 @@ public class RestWebController {
     
     @RequestMapping(value = "/getSM", method = RequestMethod.GET)
     public String getSMResource(){
-            return service.getSecret();
+    	try {
+    		return service.getSecret();
+		} catch (Exception e) {
+			return "NO DATA Found";
+		}
+            
     }
     
     @RequestMapping(value="/postcustomer", method=RequestMethod.POST)
