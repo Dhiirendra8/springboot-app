@@ -123,7 +123,7 @@ public class SecretManagerConnect {
 			GetSecretValueResponse secretsValue = secretManagerClient.getSecretValue(fetchSecrets);
 
 //			log.debug(secretsValue.secretString());
-
+			System.out.println("secretsValue.secretString :: " + secretsValue.secretString());
 			jsonObject = new JSONObject(secretsValue.secretString());
 			secretManagerClient.close();
 //			return jsonObject.getString(keyId);
