@@ -85,8 +85,10 @@ public class SecretManagerConnect {
 				
 //				String keyStore = SecretManagerConnect.secretManagerValues(WebIdentityTokenFileCredentialsProvider.create(),
 //						secretName.replace("app", keyId),keyId);
-				String keyStore = SecretManagerConnect.secretManagerValues(WebIdentityTokenFileCredentialsProvider.create(),
+				System.out.println("---------");
+				String keyStore = secretManagerValues(WebIdentityTokenFileCredentialsProvider.create(),
 						secretName,"");
+				System.out.println("++++++++++++++");
 				clearEnvironmentVariables();
 				return keyStore;
 
@@ -104,7 +106,7 @@ public class SecretManagerConnect {
 
 	}
 
-	public static String secretManagerValues(AwsCredentialsProvider awsCredentials, 
+	private String secretManagerValues(AwsCredentialsProvider awsCredentials, 
 			String secretName, String keyId) {
 
 		JSONObject jsonObject = null;
