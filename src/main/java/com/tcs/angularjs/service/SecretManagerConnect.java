@@ -74,7 +74,7 @@ public class SecretManagerConnect {
 
 //	@Cacheable(cacheNames = "smCache", key = "#keyId")
 	public String connectSM(String keyId) {
-//		log.info("Within Secret Manager Connection");
+		System.out.println("Within Secret Manager Connection");
 		
 		try {
 				

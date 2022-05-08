@@ -28,6 +28,7 @@ public class SMService {
 	private SecretManagerConnect sm;
 	
 	public String getSecret() {
+		System.out.println("Inside getSecret method");
 		return sm.connectSM("");
 	}
 
