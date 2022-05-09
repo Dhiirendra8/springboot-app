@@ -31,11 +31,12 @@ public class SecretManagerConnect {
 //	@Value("${cloud.aws.credentials.secret-key}")
 //	private String secretKey;
 //	
-	@Value("${cloud.aws.secretName}")
-	private String secretName;
+//	@Value("${cloud.aws.secretName}")
+	private String secretName="my-secret";
 
 //	static Region defaultRegion = Region.EU_WEST_2;
-	static Region defaultRegion = Region.US_EAST_1;
+//	static Region defaultRegion = Region.US_EAST_1;
+	static Region defaultRegion = Region.AP_SOUTH_1;
 	
 //	@Value("${proxyHost}")
 	private String proxyHost = System.getenv("GLOBAL_AGENT_HTTP_PROXY");
@@ -78,7 +79,7 @@ public class SecretManagerConnect {
 		
 		try {
 				
-				setEnvironmentVariables();				
+//				setEnvironmentVariables();				
 //				log.debug("Inside switchAwsACMWebToken");
 
 				// secretDetails = SecretManagerConnect.secretManagerValues(WebIdentityTokenFileCredentialsProvider.create(),"DemoTest");
@@ -89,7 +90,7 @@ public class SecretManagerConnect {
 				String keyStore = secretManagerValues(WebIdentityTokenFileCredentialsProvider.create(),
 						secretName,"");
 				System.out.println("++++++++++++++");
-				clearEnvironmentVariables();
+//				clearEnvironmentVariables();
 				return keyStore;
 
 
