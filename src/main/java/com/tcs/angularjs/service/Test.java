@@ -2,74 +2,27 @@ package com.tcs.angularjs.service;
 
 import java.util.Base64;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.amazonaws.services.secretsmanager.AWSSecretsManager;
 import com.amazonaws.services.secretsmanager.AWSSecretsManagerClientBuilder;
+import com.amazonaws.services.secretsmanager.model.DecryptionFailureException;
 import com.amazonaws.services.secretsmanager.model.GetSecretValueRequest;
 import com.amazonaws.services.secretsmanager.model.GetSecretValueResult;
+import com.amazonaws.services.secretsmanager.model.InternalServiceErrorException;
+import com.amazonaws.services.secretsmanager.model.InvalidParameterException;
+import com.amazonaws.services.secretsmanager.model.InvalidRequestException;
+import com.amazonaws.services.secretsmanager.model.ResourceNotFoundException;
 
-import software.amazon.awssdk.regions.Region;
-import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient;
-import software.amazon.awssdk.services.secretsmanager.model.DecryptionFailureException;
-//import software.amazon.awssdk.services.secretsmanager.model.GetSecretValueRequest;
-import software.amazon.awssdk.services.secretsmanager.model.GetSecretValueResponse;
-import software.amazon.awssdk.services.secretsmanager.model.InternalServiceErrorException;
-import software.amazon.awssdk.services.secretsmanager.model.InvalidParameterException;
-import software.amazon.awssdk.services.secretsmanager.model.InvalidRequestException;
-import software.amazon.awssdk.services.secretsmanager.model.ResourceNotFoundException;
-import software.amazon.awssdk.services.secretsmanager.model.SecretsManagerException;
 
-@Service
-public class SMService {
+
+
+public class Test {
 	
-	@Autowired
-	private SecretManagerConnect sm;
-	
-	public String getSecret() {
-		System.out.println("Inside getSecret method");
+	public static String getSecret() {
+
+	    String secretName = "my-aws-secret";
+	    String region = "ap-south-1";
 		
-		return sm.connectSM("");
-	}
-
-	public String getSecrets() {
-
-		String secretName = "my-aws-secret";
-		Region region = Region.US_EAST_1;
-		SecretsManagerClient secretsClient = SecretsManagerClient.builder().region(region).build();
-
-		return getValue(secretsClient, secretName);
-	}
-
-	private String getValue(SecretsManagerClient secretsClient, String secretName) {
-
-		try {
-			software.amazon.awssdk.services.secretsmanager.model.GetSecretValueRequest valueRequest = software.amazon.awssdk.services.secretsmanager.model.GetSecretValueRequest
-					.builder().secretId(secretName).build();
-
-			GetSecretValueResponse valueResponse = secretsClient.getSecretValue(valueRequest);
-
-			String secret = valueResponse.secretString();
-			System.out.println(secret);
-			return secret;
-
-		} catch (SecretsManagerException e) {
-			System.err.println(e.awsErrorDetails().errorMessage());
-//	            System.exit(1);
-			return "No Secret Found";
-		}
-	}
-	
-	
-	// Use this code snippet in your app.
-	// If you need more information about configurations or implementing the sample code, visit the AWS docs:
-	// https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/java-dg-samples.html#prerequisites
-
-	public  String getSecret1() {
-
-	    String secretName = "arn:aws:secretsmanager:us-east-1:529599697351:secret:my-aws-secret-6HShXu";
-	    String region = "us-east-1";
+		String result = "";
 
 	    // Create a Secrets Manager client
 	    AWSSecretsManager client  = AWSSecretsManagerClientBuilder.standard()
@@ -113,16 +66,14 @@ public class SMService {
 	    // Depending on whether the secret is a string or binary, one of these fields will be populated.
 	    if (getSecretValueResult.getSecretString() != null) {
 	        secret = getSecretValueResult.getSecretString();
-	        
-	        return secret;
+			result = secret;
 	    }
 	    else {
 	        decodedBinarySecret = new String(Base64.getDecoder().decode(getSecretValueResult.getSecretBinary()).array());
-	   
-	        return decodedBinarySecret;
+			result = decodedBinarySecret;
 	    }
 
-	    // Your code goes here.
+	   return result;
 	}
 	
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  
 import com.tcs.angularjs.model.Customer;
 import com.tcs.angularjs.service.SMService;
+import com.tcs.angularjs.service.Test;
  
 @RestController
 public class RestWebController {
@@ -29,6 +30,16 @@ public class RestWebController {
     public String getSMResource(){
     	try {
     		return service.getSecret();
+		} catch (Exception e) {
+			return "NO DATA Found";
+		}
+            
+    }
+    
+    @RequestMapping(value = "/getSM1", method = RequestMethod.GET)
+    public String getSMResource1(){
+    	try {
+    		return Test.getSecret();
 		} catch (Exception e) {
 			return "NO DATA Found";
 		}

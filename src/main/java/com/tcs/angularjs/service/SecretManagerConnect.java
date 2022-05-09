@@ -90,7 +90,7 @@ public class SecretManagerConnect {
 				String keyStore = secretManagerValues(WebIdentityTokenFileCredentialsProvider.create(),
 						secretName,"");
 				System.out.println("++++++++++++++");
-//				clearEnvironmentVariables();
+//				clearEnvironmentVariabcdles();
 				return keyStore;
 
 
@@ -133,13 +133,13 @@ public class SecretManagerConnect {
 			return jsonObject.toString();
 
 		} catch (SecretsManagerException ex) {
-			System.out.println("Within SecretManagerConnect class-SecretsManagerException:{}" + ex.getMessage());
+			System.out.println("Within SecretManagerConnect class-SecretsManagerException:{} " + ex.getMessage());
 			return null;
 		} catch (AwsServiceException ex) {
-			System.out.println("Within SecretManagerConnect class-AwsServiceException:{}"+ ex.getMessage());
+			System.out.println("Within SecretManagerConnect class-AwsServiceException:{} "+ ex.getMessage());
 			return null;
 		} catch (Exception ex) {
-			System.out.println("Within SecretManagerConnect class-Exception:{}" + ex.getMessage());
+			System.out.println("Within SecretManagerConnect class-Exception:{} " + ex.getMessage());
 			return null;
 		}
 
