@@ -17,12 +17,27 @@ spec:
       containers:
       - name: my-springboot-app
         image: 638669916561.dkr.ecr.ap-south-1.amazonaws.com/docker-repo:latest
+        env:
+         - name: AWS_ROLE_ARN
+           value: arn:aws:iam::638669916561:oidc-provider/oidc.eks.ap-south-1.amazonaws.com/id/8BC5E5815AA42367A7336E178FB6F089
+         - name: AWS_WEB_IDENTITY_TOKEN_FILE
+           value: /var/lib/jenkins/secrets/eks.amazonaws.com/serviceaccount/token  
+        volumeMounts:
+         - mountPath: /var/run/secrets/eks.amazonaws.com/serviceaccount
         imagePullPolicy: Always
         ports:
         - containerPort: 8085
           name: http
           protocol: TCP 
-
+    volumes:
+    - name: aws-iam-token
+      projected:
+       defaultMode: 420
+       sources:
+        - serviceAccountToken:
+            audience: sts.amazonaws.com
+            expirationSeconds: 86400
+            path: token
 # service type loadbalancer       
 ---
 apiVersion: v1
@@ -33,8 +48,6 @@ metadata:
     k8s-app: springboot-app
   name: springboot-app
 spec:
-#  serviceAccountName: my-serviceaccount
-#  namespace: default
   ports:
   - name: http
     port: 80
@@ -44,34 +57,3 @@ spec:
   selector:
     app: springboot-app
     
-#POD
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: springboot-app
-spec:
-#  serviceAccountName: my-serviceaccount
-#  namespace: default
-  containers:
-  - name: springboot-app
-    image: 638669916561.dkr.ecr.ap-south-1.amazonaws.com/docker-repo:latest
-    env:
-    - name: AWS_ROLE_ARN
-      value: arn:aws:iam::638669916561:oidc-provider/oidc.eks.ap-south-1.amazonaws.com/id/8BC5E5815AA42367A7336E178FB6F089
-    - name: AWS_WEB_IDENTITY_TOKEN_FILE
-      value: /var/lib/jenkins/secrets/eks.amazonaws.com/serviceaccount/token
-#      value: /var/run/secrets/eks.amazonaws.com/serviceaccount/token
-#    volumeMounts:
-#    - mountPath: /var/run/secrets/eks.amazonaws.com/serviceaccount       
-        
-  volumes:
-  - name: aws-iam-token
-    projected:
-      defaultMode: 420
-      sources:
-      - serviceAccountToken:
-          audience: sts.amazonaws.com
-          expirationSeconds: 86400
-          path: token
-          
