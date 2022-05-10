@@ -29,15 +29,15 @@ spec:
         - containerPort: 8085
           name: http
           protocol: TCP 
-    volumes:
-    - name: aws-iam-token
-      projected:
-       defaultMode: 420
-       sources:
-        - serviceAccountToken:
-            audience: sts.amazonaws.com
-            expirationSeconds: 86400
-            path: token
+#    volumes:
+#    - name: aws-iam-token
+#      projected:
+#       defaultMode: 420
+#       sources:
+#        - serviceAccountToken:
+#            audience: sts.amazonaws.com
+#            expirationSeconds: 86400
+#            path: token
 # service type loadbalancer       
 ---
 apiVersion: v1
