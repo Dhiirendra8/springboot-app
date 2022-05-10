@@ -75,11 +75,3 @@ spec:
           expirationSeconds: 86400
           path: token
           
-#
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: my-serviceaccount
-  annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::638669916561:role/sm-rw-role
