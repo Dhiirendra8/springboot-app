@@ -24,6 +24,7 @@ spec:
            value: /var/lib/jenkins/secrets/eks.amazonaws.com/serviceaccount/token  
         volumeMounts:
          - mountPath: /var/run/secrets/eks.amazonaws.com/serviceaccount
+           name: aws-iam-token
         imagePullPolicy: Always
         ports:
         - containerPort: 8085
