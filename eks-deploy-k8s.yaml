@@ -14,8 +14,8 @@ spec:
       labels:
         app: springboot-app
     spec:
-      serviceAccountName: my-serviceaccount
-      namespace: default
+#      serviceAccountName: my-serviceaccount
+#      namespace: default
       containers:
       - name: springboot-app
         image: 638669916561.dkr.ecr.ap-south-1.amazonaws.com/docker-repo:latest
@@ -37,8 +37,8 @@ metadata:
     k8s-app: springboot-app
   name: springboot-app
 spec:
-  serviceAccountName: my-serviceaccount
-  namespace: default
+#  serviceAccountName: my-serviceaccount
+#  namespace: default
   ports:
   - name: http
     port: 80
@@ -55,8 +55,8 @@ kind: Pod
 metadata:
   name: springboot-app
 spec:
-  serviceAccountName: my-serviceaccount
-  namespace: default
+#  serviceAccountName: my-serviceaccount
+#  namespace: default
   containers:
   - name: springboot-app
     image: 638669916561.dkr.ecr.ap-south-1.amazonaws.com/docker-repo:latest
